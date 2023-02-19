@@ -1,0 +1,16 @@
+- name: apche-config
+  hosts: all
+  become: true
+  tasks:
+    - name: installing-httpd
+      yum: 
+        name: httpd
+        state: present
+    - name: starting-httpd
+      service: 
+        name: httpd
+        state: started
+    - name: copying-index-file
+      copy: 
+        src: /var/lib/jenkins/workspace/ansible/index.html 
+        dest: /var/www/html/
